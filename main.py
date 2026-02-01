@@ -19,7 +19,7 @@ def ask_hf(headline: str):
 
     payload = {"inputs": headline, "parameters": {"candidate_labels": TOPICS}}
 
-    r = requests.post(API_URL, headers=HEADERS, json=payload, timeout=30)
+    r = requests.post(API_URL, headers=HEADERS, json=payload, timeout=15)
 
     if not r.ok:
 
@@ -83,19 +83,17 @@ def main():
 
     print("Topics:", ", ".join(TOPICS))
 
-    print("Type 'exit' to stop.\n")
+    print("Type 'exit/q' to stop.\n")
 
 
 
     while True:
-
         headline = input("Headline: ").strip()
 
-        if headline.lower() == "exit":
-
-            print("Bye! Keep coding ????")
-
+        if headline.lower() in ("exit", "q"):
+            print("Bye! Keep coding")
             break
+
 
         if not headline:
 
